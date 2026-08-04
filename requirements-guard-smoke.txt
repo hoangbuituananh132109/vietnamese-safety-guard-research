@@ -1,0 +1,13 @@
+# Exact versions used by the successful Windows RTX 3050 smoke run.
+# Install a CUDA-compatible torch wheel for the rental GPU before this file if
+# its platform does not provide the default wheel.
+torch==2.11.0
+transformers==4.57.6
+tokenizers==0.22.2
+accelerate==1.14.0
+peft==0.19.1
+gliner2[local]==1.3.2
+safetensors==0.8.0
+numpy==2.4.6
+scikit-learn==1.9.0
+pytest>=9,<10

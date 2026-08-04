@@ -1,0 +1,44 @@
+{
+  "pilot_id": "viet_targeted_abuse_pilot_v1",
+  "primary_task": {
+    "language": "vi",
+    "view": "input_text_only",
+    "safe": "no targeted abuse or hate",
+    "unsafe": "abuse or hate directed at an individual or group"
+  },
+  "primary_sources": {
+    "train": {
+      "ViHSD_label_0_CLEAN": "safe",
+      "ViHSD_label_2_HATE": "unsafe"
+    },
+    "evaluation": {
+      "ViHSD_dev_test_label_0": "safe",
+      "ViHSD_dev_test_label_2": "unsafe",
+      "SEAHateCheck_Gold_non_hateful": "safe",
+      "SEAHateCheck_Gold_hateful": "unsafe"
+    }
+  },
+  "reported_separately": {
+    "ViHSD_label_1_OFFENSIVE": "general toxicity/profanity without a required target",
+    "ViCTSD": "general toxicity and constructiveness"
+  },
+  "generation_functions": {
+    "from_unsafe_seed": [
+      "unsafe_direct_targeted",
+      "unsafe_implicit_targeted",
+      "safe_counter_speech_same_target",
+      "safe_analysis_or_deescalation_same_target"
+    ],
+    "from_safe_seed": [
+      "safe_natural_paraphrase",
+      "safe_colloquial_or_typo_variant"
+    ]
+  },
+  "acceptance": {
+    "unsafe_variants_must_preserve_a_target": true,
+    "unsafe_implicit_must_preserve_negative_or_exclusionary_intent": true,
+    "safe_contrasts_may_quote_harmful_words": true,
+    "low_confidence_or_judge_disagreement": "needs_review",
+    "generated_release_tier": "Silver"
+  }
+}

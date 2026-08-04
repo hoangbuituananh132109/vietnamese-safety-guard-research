@@ -1,0 +1,44 @@
+{
+  "pilot_id": "viet_hate_binary_pilot_v0",
+  "scope": {
+    "language": "vi",
+    "view": "input_text_only",
+    "domain": "hate_harassment_toxicity",
+    "target_labels": ["safe", "unsafe"],
+    "max_target_records": 1200
+  },
+  "source_roles": {
+    "ViHSD_train": "generation_seed_or_training",
+    "ViCTSD_train": "generation_seed_or_training",
+    "ViHSD_dev_test": "evaluation_only",
+    "ViCTSD_valid_test": "evaluation_only",
+    "SEAHateCheck_gold_annotated_vi": "external_evaluation_only"
+  },
+  "generation": {
+    "seed_manifest": "data/viet_hate_binary_pilot_v0/generation_seed_300.jsonl",
+    "variants_per_unsafe_seed": [
+      "unsafe_natural_paraphrase",
+      "unsafe_implicit",
+      "safe_counter_speech",
+      "safe_deescalation_or_analysis"
+    ],
+    "variants_per_safe_seed": [
+      "safe_natural_paraphrase",
+      "safe_identity_or_sensitive_term_preserving"
+    ],
+    "generator": "Gemini",
+    "judge_independent_from_generator": true,
+    "acceptance": "intended_function_valid AND schema_valid AND no_near_duplicate AND at_least_2_of_3_judges_agree",
+    "disagreement_state": "needs_review_internal_only"
+  },
+  "split_policy": {
+    "group_by": ["source_dataset", "source_split", "source_row_index"],
+    "never_mix_variant_siblings_across_splits": true,
+    "never_train_on_external_evaluation": true
+  },
+  "release_policy": {
+    "pilot_generated_data": "silver_only",
+    "human_validation_required_before_gold_claim": true,
+    "do_not_redistribute_source_text_until_each_dataset_license_is_confirmed": true
+  }
+}

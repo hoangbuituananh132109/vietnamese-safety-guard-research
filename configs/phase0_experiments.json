@@ -1,0 +1,206 @@
+{
+  "version": 3,
+  "locked_at": "2026-07-21",
+  "contract": {
+    "task": "text safety classification with optional policy-category supervision",
+    "views_are_metadata_only": true,
+    "binary": {
+      "labels": ["safe", "unsafe"],
+      "task_type": "single_label",
+      "activation": "softmax",
+      "loss": "categorical_cross_entropy",
+      "supervision": "every P/R/PR instance"
+    },
+    "N23": {
+      "labels": 23,
+      "task_type": "multi_label",
+      "activation": "independent_sigmoid",
+      "loss": "masked_binary_cross_entropy",
+      "supervision": "only category_scope=prompt or interaction; unavailable rows are masked, never all-zero negatives"
+    },
+    "E1_E2": "binary only; identical paired EN/VI IDs and identical text per ID",
+    "E3_E4_E5_E7": "binary plus masked N23; retain all rows and audit scope-aware truncation",
+    "truncation": {
+      "P": "field head+tail",
+      "R": "field head+tail",
+      "PR": "prompt head plus response head+tail because target is response safety",
+      "audit_required": true
+    }
+  },
+  "global_recipe": {
+    "seed": 3407,
+    "lora": {
+      "r": 4,
+      "alpha": 8,
+      "dropout": 0,
+      "target_modules": "all-linear"
+    },
+    "optimizer": "AdamW",
+    "effective_batch_target": 32,
+    "physical_microbatch": "profiled on Quadro RTX 6000 23GB: E1=8, E2=32, full 8K mmBERT fixed/schema=8",
+    "gradient_accumulation": "effective_batch_target / physical_microbatch",
+    "checkpoint_resume_required": true,
+    "length_bucket_batching_required": true,
+    "selection_metric": "Nemotron valid unsafe AUPRC then binary macro-F1; N23 reported separately",
+    "threshold_source": "Nemotron valid only"
+  },
+  "benchmarks": {
+    "e1_e2_primary_native": {
+      "nemotron_valid": "data/eval_shared_gliguard_512/nemotron_valid_native.jsonl",
+      "nemotron_test": "data/eval_shared_gliguard_512/nemotron_test_native.jsonl",
+      "sea_paired": "data/eval_shared_gliguard_512/sea_paired_native.jsonl"
+    },
+    "e1_e2_secondary_shared_truncated": {
+      "nemotron_valid": "data/eval_shared_gliguard_512/nemotron_valid_shared_truncated.jsonl",
+      "nemotron_test": "data/eval_shared_gliguard_512/nemotron_test_shared_truncated.jsonl",
+      "sea_paired": "data/eval_shared_gliguard_512/sea_paired_shared_truncated.jsonl"
+    },
+    "full_mmbert": {
+      "nemotron_valid": "data/guard_full/valid.jsonl",
+      "nemotron_test": "data/guard_full/test.jsonl",
+      "sea_paired": "data/benchmarks/sea_safeguard/paired_en_vi.jsonl",
+      "policy": "retain all rows; mmBERT runtime exact 8K scope-aware truncation"
+    },
+    "sea_official_bundled": "data/benchmarks/sea_safeguard/official_en_vi.jsonl"
+  },
+  "runs": [
+    {
+      "id": "B0-GLI-ZS",
+      "train": false,
+      "model_kind": "gliguard_schema",
+      "base_model": "models/fastino_gliguard_300m",
+      "context": 512,
+      "eval": ["e1_e2_primary_native", "e1_e2_secondary_shared_truncated"],
+      "status": "baseline_runner_available"
+    },
+    {
+      "id": "E1-G-EV-512",
+      "train": true,
+      "model_kind": "gliguard_schema",
+      "base_model": "models/fastino_gliguard_300m",
+      "train_manifest": "data/guard_phase0_gliguard_native_512/train_gliner.jsonl",
+      "valid_manifest": "data/guard_phase0_gliguard_native_512/valid_gliner.jsonl",
+      "canonical_valid": "data/guard_phase0_gliguard_native_512/valid.jsonl",
+      "test_manifest": "data/guard_phase0_gliguard_native_512/test_gliner.jsonl",
+      "context": 512,
+      "category_tasks": false,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "max_optimizer_steps": 7226,
+      "eval_batch_size": 8,
+      "inference_batch_size": 8,
+      "encoder_learning_rate": 0.00001,
+      "head_learning_rate": 0.0001,
+      "eval_strategy": "epoch",
+      "eval_every": 3613,
+      "log_every": 10,
+      "loss_override": "guard_smoke.gliguard_single_label.install_phase0_single_label_ce",
+      "resume": "adapter-only warm restart; installed GLiNER2 does not restore optimizer/scheduler/global step",
+      "eval": ["e1_e2_primary_native", "e1_e2_secondary_shared_truncated"],
+      "status": "full_run_active_vast_rtx6000"
+    },
+    {
+      "id": "E2-M-EV-GLI-COMPAT-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/guard_phase0_gliguard_native_512/train.jsonl",
+      "valid_manifest": "data/guard_phase0_gliguard_native_512/valid.jsonl",
+      "test_manifest": "data/guard_phase0_gliguard_native_512/test.jsonl",
+      "context": 8192,
+      "category_tasks": false,
+      "epochs": 2,
+      "micro_batch_size": 32,
+      "gradient_checkpointing": true,
+      "eval": ["e1_e2_primary_native", "e1_e2_secondary_shared_truncated"],
+      "status": "completed_vast_rtx6000; matrix_6_of_6_completed"
+    },
+    {
+      "id": "E3-M-E-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/guard_experiments_v2/e3_english_full/train.jsonl",
+      "valid_manifest": "data/guard_full/valid.jsonl",
+      "test_manifest": "data/guard_full/test.jsonl",
+      "context": 8192,
+      "category_tasks": true,
+      "category_loss_weight": 1.0,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"],
+      "status": "scalable_trainer_ready_target_gpu_profile_pending"
+    },
+    {
+      "id": "E4-M-EV-MATCHED-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/guard_experiments_v2/e4_ev_matched_full/train.jsonl",
+      "valid_manifest": "data/guard_full/valid.jsonl",
+      "test_manifest": "data/guard_full/test.jsonl",
+      "context": 8192,
+      "category_tasks": true,
+      "category_loss_weight": 1.0,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"],
+      "status": "scalable_trainer_ready_target_gpu_profile_pending"
+    },
+    {
+      "id": "E5-M-EV-FULL-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/guard_full/train.jsonl",
+      "valid_manifest": "data/guard_full/valid.jsonl",
+      "test_manifest": "data/guard_full/test.jsonl",
+      "context": 8192,
+      "category_tasks": true,
+      "category_loss_weight": 1.0,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"],
+      "status": "scalable_trainer_ready_target_gpu_profile_pending"
+    },
+    {
+      "id": "E7-M-SCHEMA-EV-8K",
+      "train": true,
+      "model_kind": "mmbert_schema",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/guard_full/train.jsonl",
+      "valid_manifest": "data/guard_full/valid.jsonl",
+      "test_manifest": "data/guard_full/test.jsonl",
+      "context": 8192,
+      "category_tasks": true,
+      "category_loss_weight": 1.0,
+      "negative_label_keep_probability": 0.5,
+      "full_category_schema_probability": 0.25,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "inference_label_orders": ["canonical", "reversed"],
+      "permutation_comparison_required": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"],
+      "status": "50_step_smoke_completed_vast_rtx6000; full_run_pending"
+    }
+  ],
+  "full_gpu_gate": {
+    "data_preflight": true,
+    "fixed_scalable_trainer": true,
+    "schema_scalable_trainer": true,
+    "gliguard_scalable_launcher": true,
+    "checkpoint_resume_fixed_schema": true,
+    "checkpoint_resume_gliguard_exact": false,
+    "target_32gb_context_profile": false,
+    "target_23gb_rtx6000_context_profile": true,
+    "native_bf16_on_target": false,
+    "fp16_grad_scaler_init_scale": 512,
+    "fp16_grad_scaler_growth_interval": 1000000,
+    "paid_full_run": true,
+    "reason": "User authorized the paid Vast run. RTX 6000 profiling passed fixed/schema backward through 8K at micro-batch 8; E2 completed cleanly. E1 runs under tmux because GLiNER2 only supports adapter-weight warm restart."
+  }
+}

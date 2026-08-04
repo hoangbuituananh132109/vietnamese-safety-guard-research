@@ -1,0 +1,40 @@
+.env
+API.txt
+.venv/
+.venv-guard-smoke/
+.venv-*/
+.runtime/
+.git-public/
+models/
+data/
+results/
+artifacts/
+exports/
+external/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+data/translated/
+data/checkpoints/
+data/review_queue/
+reports/*_translation_review.html
+
+# Local GPU/download bundles and generated logs
+reports/vast_download/
+reports/gpu_profiles_5090/
+reports/full_run/*.log
+
+# Archives and office bundles are kept outside the public repository
+*.zip
+*.tar
+*.tar.gz
+*.tar.zst
+*.7z
+*.docx
+
+# Local credentials and private runtime material
+*.pem
+*.key
+*.p12
+*.secret
+auth.json

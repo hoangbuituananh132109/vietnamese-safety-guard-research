@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "locked_at": "2026-07-24",
+  "purpose": "E6: isolate the effect of N23 multi-task supervision by training the E5 full EN-VI no-R mmBERT recipe on binary safe/unsafe only.",
+  "contract": {
+    "allowed_views": ["P", "PR"],
+    "forbidden_views": ["R"],
+    "binary": {
+      "labels": ["safe", "unsafe"],
+      "task_type": "single_label",
+      "activation": "softmax",
+      "loss": "categorical_cross_entropy"
+    },
+    "N23": {
+      "enabled": false,
+      "reason": "E6 is the controlled binary-only counterpart of E5. No N23 head, targets, masked BCE, or category loss are constructed."
+    },
+    "comparison_rule": "Compare E6 only with E5NR-M-EV-FULL-8K using the same P/PR-only manifests, 8K limit, seed, LoRA recipe, epochs, and evaluation suites."
+  },
+  "global_recipe": {
+    "seed": 3407,
+    "lora": {"r": 4, "alpha": 8, "dropout": 0, "target_modules": "all-linear"},
+    "optimizer": "AdamW",
+    "effective_batch_target": 32,
+    "epochs": 2,
+    "length_bucket_batching_required": true,
+    "checkpoint_resume_required": true,
+    "selection_metric": "Nemotron no-R valid unsafe AUPRC then binary macro-F1",
+    "threshold_source": "Nemotron no-R valid only",
+    "precision": "auto (BF16 on Ampere/Ada, FP16 with audited GradScaler on Turing)"
+  },
+  "benchmarks": {
+    "e1_e2_primary_native": {
+      "nemotron_valid": "data/no_r/phase0_gliguard_native_512/valid.jsonl",
+      "nemotron_test": "data/no_r/phase0_gliguard_native_512/test.jsonl",
+      "sea_paired": "data/eval_shared_gliguard_512/sea_paired_native.jsonl"
+    },
+    "full_mmbert": {
+      "nemotron_valid": "data/no_r/full/valid.jsonl",
+      "nemotron_test": "data/no_r/full/test.jsonl",
+      "sea_paired": "data/benchmarks/sea_safeguard/paired_en_vi.jsonl",
+      "policy": "P/PR only; retain all rows; scope-aware truncation at 8K when needed."
+    }
+  },
+  "runs": [
+    {
+      "id": "E6NR-M-EV-FULL-BIN-8K",
+      "counterpart": "E5NR-M-EV-FULL-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "comparison_group": "e5_n23_ablation",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/no_r/full/train.jsonl",
+      "valid_manifest": "data/no_r/full/valid.jsonl",
+      "test_manifest": "data/no_r/full/test.jsonl",
+      "context": 8192,
+      "category_tasks": false,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"]
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "locked_at": "2026-07-24",
+  "purpose": "Clean P/PR-only rerun of E1-E5 and E7; response-only R is excluded from train, validation and test.",
+  "contract": {
+    "allowed_views": ["P", "PR"],
+    "forbidden_views": ["R"],
+    "binary": {
+      "labels": ["safe", "unsafe"],
+      "task_type": "single_label",
+      "activation": "softmax",
+      "loss": "categorical_cross_entropy"
+    },
+    "N23": {
+      "labels": 23,
+      "task_type": "multi_label",
+      "activation": "independent_sigmoid",
+      "loss": "masked_binary_cross_entropy",
+      "supervision": "Only rows with category_scope=prompt or interaction; unavailable labels are masked."
+    },
+    "E1_E2": "Binary only on identical GLiGuard-compatible EN/VI semantic units.",
+    "E3_E4_E5_E7": "Binary plus masked N23. Every train/eval manifest is P/PR-only.",
+    "comparison_rule": "Compare NR runs to each other as the primary clean ablation. Comparisons to legacy runs must disclose that legacy manifests included R."
+  },
+  "global_recipe": {
+    "seed": 3407,
+    "lora": {
+      "r": 4,
+      "alpha": 8,
+      "dropout": 0,
+      "target_modules": "all-linear"
+    },
+    "optimizer": "AdamW",
+    "effective_batch_target": 32,
+    "physical_microbatch": {
+      "E1": 8,
+      "E2": 32,
+      "E3_E4_E5_E7": 8
+    },
+    "epochs": 2,
+    "length_bucket_batching_required": true,
+    "checkpoint_resume_required": true,
+    "selection_metric": "Nemotron no-R valid unsafe AUPRC then binary macro-F1",
+    "threshold_source": "Nemotron no-R valid only",
+    "precision": "auto (BF16 on Ampere/Ada, FP16 with audited GradScaler on Turing)"
+  },
+  "benchmarks": {
+    "e1_e2_primary_native": {
+      "nemotron_valid": "data/no_r/phase0_gliguard_native_512/valid.jsonl",
+      "nemotron_test": "data/no_r/phase0_gliguard_native_512/test.jsonl",
+      "sea_paired": "data/eval_shared_gliguard_512/sea_paired_native.jsonl"
+    },
+    "e1_e2_secondary_shared_truncated": {
+      "nemotron_valid": "data/no_r/eval_shared_gliguard_512/nemotron_valid_shared_truncated.jsonl",
+      "nemotron_test": "data/no_r/eval_shared_gliguard_512/nemotron_test_shared_truncated.jsonl",
+      "sea_paired": "data/eval_shared_gliguard_512/sea_paired_shared_truncated.jsonl"
+    },
+    "full_mmbert": {
+      "nemotron_valid": "data/no_r/full/valid.jsonl",
+      "nemotron_test": "data/no_r/full/test.jsonl",
+      "sea_paired": "data/benchmarks/sea_safeguard/paired_en_vi.jsonl",
+      "policy": "P/PR only; retain all rows; scope-aware truncation at 8K when needed."
+    }
+  },
+  "runs": [
+    {
+      "id": "E1NR-G-EV-512",
+      "legacy_id": "E1-G-EV-512",
+      "train": true,
+      "model_kind": "gliguard_schema",
+      "comparison_group": "e1_e2",
+      "base_model": "models/fastino_gliguard_300m",
+      "train_manifest": "data/no_r/phase0_gliguard_native_512/train_gliner.jsonl",
+      "valid_manifest": "data/no_r/phase0_gliguard_native_512/valid_gliner.jsonl",
+      "canonical_valid": "data/no_r/phase0_gliguard_native_512/valid.jsonl",
+      "test_manifest": "data/no_r/phase0_gliguard_native_512/test_gliner.jsonl",
+      "context": 512,
+      "category_tasks": false,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "eval_batch_size": 8,
+      "inference_batch_size": 8,
+      "encoder_learning_rate": 0.00001,
+      "head_learning_rate": 0.0001,
+      "eval_strategy": "epoch",
+      "log_every": 10,
+      "loss_override": "guard_smoke.gliguard_single_label.install_phase0_single_label_ce",
+      "resume": "adapter-only warm restart; no exact optimizer resume in pinned GLiNER2",
+      "eval": ["e1_e2_primary_native", "e1_e2_secondary_shared_truncated"]
+    },
+    {
+      "id": "E2NR-M-EV-GLI-COMPAT-8K",
+      "legacy_id": "E2-M-EV-GLI-COMPAT-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "comparison_group": "e1_e2",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/no_r/phase0_gliguard_native_512/train.jsonl",
+      "valid_manifest": "data/no_r/phase0_gliguard_native_512/valid.jsonl",
+      "test_manifest": "data/no_r/phase0_gliguard_native_512/test.jsonl",
+      "context": 8192,
+      "category_tasks": false,
+      "epochs": 2,
+      "micro_batch_size": 32,
+      "gradient_checkpointing": true,
+      "eval": ["e1_e2_primary_native", "e1_e2_secondary_shared_truncated"]
+    },
+    {
+      "id": "E3NR-M-E-8K",
+      "legacy_id": "E3-M-E-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "comparison_group": "full_mmbert",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/no_r/e3_english_full/train.jsonl",
+      "valid_manifest": "data/no_r/full/valid.jsonl",
+      "test_manifest": "data/no_r/full/test.jsonl",
+      "context": 8192,
+      "category_tasks": true,
+      "category_loss_weight": 1.0,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"]
+    },
+    {
+      "id": "E4NR-M-EV-MATCHED-8K",
+      "legacy_id": "E4-M-EV-MATCHED-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "comparison_group": "full_mmbert",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/no_r/e4_ev_matched_full/train.jsonl",
+      "valid_manifest": "data/no_r/full/valid.jsonl",
+      "test_manifest": "data/no_r/full/test.jsonl",
+      "context": 8192,
+      "category_tasks": true,
+      "category_loss_weight": 1.0,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"]
+    },
+    {
+      "id": "E5NR-M-EV-FULL-8K",
+      "legacy_id": "E5-M-EV-FULL-8K",
+      "train": true,
+      "model_kind": "mmbert_fixed",
+      "comparison_group": "full_mmbert",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/no_r/full/train.jsonl",
+      "valid_manifest": "data/no_r/full/valid.jsonl",
+      "test_manifest": "data/no_r/full/test.jsonl",
+      "context": 8192,
+      "category_tasks": true,
+      "category_loss_weight": 1.0,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"]
+    },
+    {
+      "id": "E7NR-M-SCHEMA-EV-8K",
+      "legacy_id": "E7-M-SCHEMA-EV-8K",
+      "train": true,
+      "model_kind": "mmbert_schema",
+      "comparison_group": "full_mmbert",
+      "base_model": "models/mmbert_small_base_smoke",
+      "train_manifest": "data/no_r/full/train.jsonl",
+      "valid_manifest": "data/no_r/full/valid.jsonl",
+      "test_manifest": "data/no_r/full/test.jsonl",
+      "context": 8192,
+      "category_tasks": true,
+      "category_loss_weight": 1.0,
+      "negative_label_keep_probability": 0.5,
+      "full_category_schema_probability": 0.25,
+      "epochs": 2,
+      "micro_batch_size": 8,
+      "gradient_checkpointing": true,
+      "inference_label_orders": ["canonical", "reversed"],
+      "permutation_comparison_required": true,
+      "eval": ["full_mmbert", "e1_e2_primary_native"]
+    }
+  ]
+}

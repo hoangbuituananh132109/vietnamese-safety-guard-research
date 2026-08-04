@@ -1,0 +1,10 @@
+input: data/pilot/nemotron_en_train_pilot_50_diverse_v2.jsonl
+model: gemini-3.1-flash-lite
+translation_prompt_version: nemotron-en-vi-v5
+api_key_file: API.txt
+batching:
+  normal: {max_items: 10, max_source_chars: 10000}
+  near_tail: {max_items: 4, max_source_chars: 8000}
+  tail: {max_items: 2, max_source_chars: 6000}
+  high_tail: {max_items: 1, max_source_chars: 25000}
+  oversized: {max_items: 1, max_source_chars: null}
