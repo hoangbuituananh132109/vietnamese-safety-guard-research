@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software or the Vietnamese translation pipeline, please cite this repository and the upstream Nemotron dataset."
+title: "Vietnamese Safety Guard Research: Translation, Training, and Evaluation Pipeline"
+type: software
+authors:
+  - family-names: "Hoang"
+    given-names: "Bui Tuan Anh"
+year: 2026
+license: Apache-2.0
+repository-code: "https://github.com/hoangbuituananh132109/vietnamese-safety-guard-research"
+keywords:
+  - Vietnamese
+  - safety guard
+  - Nemotron
+  - machine translation
+  - LoRA
+  - multilingual evaluation

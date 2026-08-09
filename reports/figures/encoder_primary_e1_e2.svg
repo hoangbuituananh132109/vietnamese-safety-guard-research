@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="236" viewBox="0 0 1100 236">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:25px;font-weight:700}.sub{font-size:14px;fill:#667085}.label{font-size:14px}.small{font-size:12px;fill:#667085}.value{font-size:12px;font-weight:600}.axis{stroke:#aeb7c7;stroke-width:1}.grid{stroke:#e5e8ef;stroke-width:1}</style>
+<text class="title" x="48" y="40">GLiGuard versus mmBERT on the primary-native contract</text>
+<text class="sub" x="48" y="65">E1/E2 only; 6,676 Nemotron and 3,146 SEA examples</text>
+<line class="grid" x1="150.0" y1="92" x2="150.0" y2="201"/>
+<text class="small" text-anchor="middle" x="150.0" y="221">0%</text>
+<line class="grid" x1="329.0" y1="92" x2="329.0" y2="201"/>
+<text class="small" text-anchor="middle" x="329.0" y="221">20%</text>
+<line class="grid" x1="508.0" y1="92" x2="508.0" y2="201"/>
+<text class="small" text-anchor="middle" x="508.0" y="221">40%</text>
+<line class="grid" x1="687.0" y1="92" x2="687.0" y2="201"/>
+<text class="small" text-anchor="middle" x="687.0" y="221">60%</text>
+<line class="grid" x1="866.0" y1="92" x2="866.0" y2="201"/>
+<text class="small" text-anchor="middle" x="866.0" y="221">80%</text>
+<line class="grid" x1="1045.0" y1="92" x2="1045.0" y2="201"/>
+<text class="small" text-anchor="middle" x="1045.0" y="221">100%</text>
+<text class="label" text-anchor="end" x="138" y="116">E1NR</text>
+<rect x="150" y="96" width="618.2" height="16" rx="3" fill="#3569c8"/>
+<text class="value" x="775.2" y="108">69.07%</text>
+<rect x="150" y="118" width="580.6" height="16" rx="3" fill="#c6922e"/>
+<text class="value" x="737.6" y="130">64.88%</text>
+<text class="label" text-anchor="end" x="138" y="174">E2NR</text>
+<rect x="150" y="154" width="688.1" height="16" rx="3" fill="#3569c8"/>
+<text class="value" x="845.1" y="166">76.89%</text>
+<rect x="150" y="176" width="646.6" height="16" rx="3" fill="#c6922e"/>
+<text class="value" x="803.6" y="188">72.25%</text>
+<rect x="855" y="27" width="13" height="13" fill="#3569c8"/><text class="small" x="875" y="38">Nemotron</text>
+<rect x="965" y="27" width="13" height="13" fill="#c6922e"/><text class="small" x="985" y="38">SEA</text>
+</svg>

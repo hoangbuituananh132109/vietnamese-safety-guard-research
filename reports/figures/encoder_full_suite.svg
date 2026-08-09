@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="410" viewBox="0 0 1100 410">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:25px;font-weight:700}.sub{font-size:14px;fill:#667085}.label{font-size:14px}.small{font-size:12px;fill:#667085}.value{font-size:12px;font-weight:600}.axis{stroke:#aeb7c7;stroke-width:1}.grid{stroke:#e5e8ef;stroke-width:1}</style>
+<text class="title" x="48" y="40">Clean P/PR encoder accuracy</text>
+<text class="sub" x="48" y="65">Full-8K contract; 8,056 Nemotron and 3,680 SEA examples</text>
+<line class="grid" x1="150.0" y1="92" x2="150.0" y2="375"/>
+<text class="small" text-anchor="middle" x="150.0" y="395">0%</text>
+<line class="grid" x1="329.0" y1="92" x2="329.0" y2="375"/>
+<text class="small" text-anchor="middle" x="329.0" y="395">20%</text>
+<line class="grid" x1="508.0" y1="92" x2="508.0" y2="375"/>
+<text class="small" text-anchor="middle" x="508.0" y="395">40%</text>
+<line class="grid" x1="687.0" y1="92" x2="687.0" y2="375"/>
+<text class="small" text-anchor="middle" x="687.0" y="395">60%</text>
+<line class="grid" x1="866.0" y1="92" x2="866.0" y2="375"/>
+<text class="small" text-anchor="middle" x="866.0" y="395">80%</text>
+<line class="grid" x1="1045.0" y1="92" x2="1045.0" y2="375"/>
+<text class="small" text-anchor="middle" x="1045.0" y="395">100%</text>
+<text class="label" text-anchor="end" x="138" y="116">E3NR</text>
+<rect x="150" y="96" width="660.5" height="16" rx="3" fill="#3569c8"/>
+<text class="value" x="817.5" y="108">73.80%</text>
+<rect x="150" y="118" width="636.5" height="16" rx="3" fill="#c6922e"/>
+<text class="value" x="793.5" y="130">71.11%</text>
+<text class="label" text-anchor="end" x="138" y="174">E4NR</text>
+<rect x="150" y="154" width="669.1" height="16" rx="3" fill="#3569c8"/>
+<text class="value" x="826.1" y="166">74.76%</text>
+<rect x="150" y="176" width="639.6" height="16" rx="3" fill="#c6922e"/>
+<text class="value" x="796.6" y="188">71.47%</text>
+<text class="label" text-anchor="end" x="138" y="232">E5NR</text>
+<rect x="150" y="212" width="700.5" height="16" rx="3" fill="#3569c8"/>
+<text class="value" x="857.5" y="224">78.26%</text>
+<rect x="150" y="234" width="656.4" height="16" rx="3" fill="#c6922e"/>
+<text class="value" x="813.4" y="246">73.34%</text>
+<text class="label" text-anchor="end" x="138" y="290">E6NR</text>
+<rect x="150" y="270" width="699.8" height="16" rx="3" fill="#3569c8"/>
+<text class="value" x="856.8" y="282">78.19%</text>
+<rect x="150" y="292" width="656.9" height="16" rx="3" fill="#c6922e"/>
+<text class="value" x="813.9" y="304">73.40%</text>
+<text class="label" text-anchor="end" x="138" y="348">E7NR</text>
+<rect x="150" y="328" width="506.7" height="16" rx="3" fill="#3569c8"/>
+<text class="value" x="663.7" y="340">56.62%</text>
+<rect x="150" y="350" width="432.7" height="16" rx="3" fill="#c6922e"/>
+<text class="value" x="589.7" y="362">48.34%</text>
+<rect x="855" y="27" width="13" height="13" fill="#3569c8"/><text class="small" x="875" y="38">Nemotron</text>
+<rect x="965" y="27" width="13" height="13" fill="#c6922e"/><text class="small" x="985" y="38">SEA</text>
+</svg>

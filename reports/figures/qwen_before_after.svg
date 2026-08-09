@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="430" viewBox="0 0 1080 430">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:25px;font-weight:700}.sub{font-size:14px;fill:#667085}.label{font-size:14px}.small{font-size:12px;fill:#667085}.value{font-size:12px;font-weight:600}.axis{stroke:#aeb7c7;stroke-width:1}.grid{stroke:#e5e8ef;stroke-width:1}</style>
+<text class="title" x="48" y="40">Qwen before and after LoRA</text>
+<text class="sub" x="48" y="65">Same 11,736 P/PR examples; Q1 mapping changes the Safe/Unsafe trade-off</text>
+<line class="grid" x1="105" y1="340.0" x2="1035" y2="340.0"/>
+<text class="small" text-anchor="end" x="95" y="344.0">0%</text>
+<line class="grid" x1="105" y1="294.0" x2="1035" y2="294.0"/>
+<text class="small" text-anchor="end" x="95" y="298.0">20%</text>
+<line class="grid" x1="105" y1="248.0" x2="1035" y2="248.0"/>
+<text class="small" text-anchor="end" x="95" y="252.0">40%</text>
+<line class="grid" x1="105" y1="202.0" x2="1035" y2="202.0"/>
+<text class="small" text-anchor="end" x="95" y="206.0">60%</text>
+<line class="grid" x1="105" y1="156.0" x2="1035" y2="156.0"/>
+<text class="small" text-anchor="end" x="95" y="160.0">80%</text>
+<line class="grid" x1="105" y1="110.0" x2="1035" y2="110.0"/>
+<text class="small" text-anchor="end" x="95" y="114.0">100%</text>
+<text class="label" text-anchor="middle" x="255" y="370">Accuracy</text>
+<rect x="185" y="144.2" width="34" height="195.8" rx="3" fill="#c6922e"/>
+<text class="small" text-anchor="middle" x="202" y="138.2">85.1</text>
+<rect x="233" y="144.7" width="34" height="195.3" rx="3" fill="#e1c78e"/>
+<text class="small" text-anchor="middle" x="250" y="138.7">84.9</text>
+<rect x="281" y="138.0" width="34" height="202.0" rx="3" fill="#3569c8"/>
+<text class="small" text-anchor="middle" x="298" y="132.0">87.8</text>
+<text class="label" text-anchor="middle" x="525" y="370">Safe recall</text>
+<rect x="455" y="165.5" width="34" height="174.5" rx="3" fill="#c6922e"/>
+<text class="small" text-anchor="middle" x="472" y="159.5">75.9</text>
+<rect x="503" y="132.1" width="34" height="207.9" rx="3" fill="#e1c78e"/>
+<text class="small" text-anchor="middle" x="520" y="126.1">90.4</text>
+<rect x="551" y="138.1" width="34" height="201.9" rx="3" fill="#3569c8"/>
+<text class="small" text-anchor="middle" x="568" y="132.1">87.8</text>
+<text class="label" text-anchor="middle" x="795" y="370">Unsafe recall</text>
+<rect x="725" y="124.1" width="34" height="215.9" rx="3" fill="#c6922e"/>
+<text class="small" text-anchor="middle" x="742" y="118.1">93.9</text>
+<rect x="773" y="156.6" width="34" height="183.4" rx="3" fill="#e1c78e"/>
+<text class="small" text-anchor="middle" x="790" y="150.6">79.8</text>
+<rect x="821" y="137.9" width="34" height="202.1" rx="3" fill="#3569c8"/>
+<text class="small" text-anchor="middle" x="838" y="131.9">87.9</text>
+<rect x="210" y="385" width="13" height="13" fill="#c6922e"/><text class="small" x="230" y="396">Q1 conservative</text>
+<rect x="460" y="385" width="13" height="13" fill="#e1c78e"/><text class="small" x="480" y="396">Q1 lenient</text>
+<rect x="710" y="385" width="13" height="13" fill="#3569c8"/><text class="small" x="730" y="396">Q2 LoRA binary</text>
+<text class="small" x="48" y="86">Q1 native outputs: Safe 4,683 · Controversial 1,682 · Unsafe 5,371; Q2 emits only Safe/Unsafe.</text>
+</svg>

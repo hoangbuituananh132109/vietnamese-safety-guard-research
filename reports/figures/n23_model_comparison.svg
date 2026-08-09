@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="395" viewBox="0 0 1180 395">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:25px;font-weight:700}.sub{font-size:14px;fill:#667085}.label{font-size:14px}.small{font-size:12px;fill:#667085}.value{font-size:12px;font-weight:600}.axis{stroke:#aeb7c7;stroke-width:1}.grid{stroke:#e5e8ef;stroke-width:1}</style>
+<text class="title" x="48" y="40">N23 aggregate comparison</text>
+<text class="sub" x="48" y="65">Nemotron test, exact same 5,768 supervised P/PR examples</text>
+<text class="small" text-anchor="middle" x="237.5" y="100">Exact match</text>
+<text class="small" text-anchor="middle" x="382.5" y="100">Micro-F1</text>
+<text class="small" text-anchor="middle" x="527.5" y="100">Macro-F1</text>
+<text class="label" text-anchor="end" x="150" y="153">E5NR</text>
+<rect x="168" y="121" width="139" height="52" rx="5" fill="#eef3fb" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="153" fill="#172033" style="fill:#172033">44.89%</text>
+<rect x="313" y="121" width="139" height="52" rx="5" fill="#eef3fb" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="153" fill="#172033" style="fill:#172033">34.42%</text>
+<rect x="458" y="121" width="139" height="52" rx="5" fill="#eef3fb" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="153" fill="#172033" style="fill:#172033">15.76%</text>
+<text class="label" text-anchor="end" x="150" y="211">D1</text>
+<rect x="168" y="179" width="139" height="52" rx="5" fill="#d3dff4" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="211" fill="#172033" style="fill:#172033">52.31%</text>
+<rect x="313" y="179" width="139" height="52" rx="5" fill="#bfd0ee" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="211" fill="#172033" style="fill:#172033">57.83%</text>
+<rect x="458" y="179" width="139" height="52" rx="5" fill="#eef3fb" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="211" fill="#172033" style="fill:#172033">44.69%</text>
+<text class="label" text-anchor="end" x="150" y="269">D2</text>
+<rect x="168" y="237" width="139" height="52" rx="5" fill="#d5e0f4" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="269" fill="#172033" style="fill:#172033">51.73%</text>
+<rect x="313" y="237" width="139" height="52" rx="5" fill="#bdcfee" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="269" fill="#172033" style="fill:#172033">58.20%</text>
+<rect x="458" y="237" width="139" height="52" rx="5" fill="#e5ecf8" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="269" fill="#172033" style="fill:#172033">47.49%</text>
+<text class="label" text-anchor="end" x="150" y="327">D3</text>
+<rect x="168" y="295" width="139" height="52" rx="5" fill="#d8e3f5" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="327" fill="#172033" style="fill:#172033">50.85%</text>
+<rect x="313" y="295" width="139" height="52" rx="5" fill="#c3d3ef" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="327" fill="#172033" style="fill:#172033">56.63%</text>
+<rect x="458" y="295" width="139" height="52" rx="5" fill="#e1e9f7" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="327" fill="#172033" style="fill:#172033">48.51%</text>
+</svg>

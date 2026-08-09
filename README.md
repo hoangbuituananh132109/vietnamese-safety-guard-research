@@ -21,6 +21,35 @@ The public repository contains the implementation, experiment contracts, validat
 | Decoder result | Qwen3Guard-Gen-4B LoRA was strongest on the common no-response (no-R) comparison used here, while NVIDIA Nemotron Guard remained a useful large-decoder reference. |
 | Main conclusion | Context capacity and multilingual exposure mattered more reliably than the first dynamic-schema implementation. Binary accuracy alone was not enough: unsafe recall, calibration, N23 category coverage, and P/PR behavior changed the deployment interpretation. |
 
+## Clean P/PR results release
+
+The current primary research contract excludes response-only (R) examples from training and evaluation. The detailed report separates E1/E2 native-capacity populations from the full 8K E3–E7 population, and treats the mixed P/R/PR D2 pilot as historical evidence only.
+
+Key clean findings:
+
+- E5NR mmBERT full EN+VI is the strongest fixed-head encoder: 78.26% Nemotron and 73.34% SEA accuracy.
+- Q2 Qwen3Guard LoRA is the strongest binary decoder on the exact 11,736-example common set: 87.83% accuracy and 87.82% macro-F1.
+- Qwen base is already strong, but its native Controversial output makes binary performance policy-dependent.
+- D3 Nemotron LoRA improves N23 macro-F1 over D1, but does not improve overall binary accuracy.
+- E5's N23 tail labels remain weak at a global 0.5 threshold; per-label validation calibration is the next required experiment.
+- The completed Luna/Sol translation is not included in these trained results. A matched Gemini-versus-Luna/Sol retraining study is the next phase.
+
+[Read the detailed clean P/PR report](reports/CLEAN_P_PR_RESEARCH_REPORT_20260809.md) or inspect the [machine-readable metrics](reports/clean_experiments/metrics_summary.json).
+
+Published Hugging Face artifacts:
+
+- [Gated Luna/Sol Vietnamese dataset](https://huggingface.co/datasets/TuanAnhHoangBui/nemotron-safety-guard-vi-luna-sol)
+- [Q2 Qwen3Guard EN–VI P/PR LoRA adapter](https://huggingface.co/TuanAnhHoangBui/qwen3guard-gen-4b-vi-en-p-pr-lora)
+- [D3 Nemotron Vietnamese P/PR LoRA adapter](https://huggingface.co/TuanAnhHoangBui/nemotron-safety-guard-8b-vi-p-pr-lora)
+### Main figures
+
+![Full 8K encoder comparison](reports/figures/encoder_full_suite.svg)
+
+![Clean decoder comparison](reports/figures/decoder_clean_comparison.svg)
+
+![Qwen before and after binary LoRA](reports/figures/qwen_before_after.svg)
+
+![E5 N23 category F1](reports/figures/n23_e5_per_label.svg)
 ## Why GLiGuard led to this study
 
 The GLiGuard paper presents a schema-conditioned bidirectional encoder for safety classification. Instead of generating a moderation answer token by token, the model places task and label descriptions into the input, uses the hidden state at each label anchor, and maps those representations to classification scores. The paper reports a much smaller model and substantially higher throughput/lower latency than the decoder guards in its benchmark. See the [GLiGuard paper](https://arxiv.org/abs/2605.07982), the [official implementation](https://github.com/fastino-ai/GLiGuard), and the [released checkpoint](https://huggingface.co/fastino/gliguard-LLMGuardrails-300M).
@@ -52,7 +81,7 @@ This repository therefore describes the experiment as a controlled base-model/co
 
 The source is an English Nemotron safety corpus containing prompt/response safety examples, binary safety labels, and a 23-category safety taxonomy used by the multi-label evaluations. The final Vietnamese deliverable contains one translated record for every source UID.
 
-The project result reported here is the **Gemini translation pipeline plus the completed encoder/decoder experiments**. Luna/Sol translations were completed later, but they were not used for the reported experiments and should not be presented as an experimentally validated contribution of this project.
+The completed encoder/decoder experiments reported below used the **Gemini translation corpus**. A second, UID-matched Luna/Sol translation reached 45,416/45,416 records on 2026-08-09 and is train-ready, but it has not yet been used for the reported experiments. Until the matched training protocol is executed, the repository presents Luna/Sol as a completed pipeline artifact rather than a demonstrated model-quality improvement.
 
 ### UID-preserving pipeline
 
@@ -86,6 +115,15 @@ The validated Gemini corpus report records:
 - The report explicitly does **not** claim BLEU, COMET, or human-equivalence quality; it reports structural and safety-preservation readiness.
 
 See the full [translation quality report](reports/final_quality/TRANSLATION_QUALITY_REPORT.md).
+
+### Luna/Sol translation study
+
+The later pipeline used Luna for 45,060 selected records and Sol Web for 356 hard or infrastructure-limited records. The final corpus has full UID coverage, zero structural issues, and exact materialization parity with the Gemini condition. Downstream comparison is pending.
+
+- [Luna/Sol methods and data-quality handoff](docs/LUNA_SOL_TRANSLATION_RESEARCH_HANDOFF.md)
+- [Matched training and evaluation protocol](docs/LUNA_SOL_TRAINING_EVALUATION_PROTOCOL.md)
+- [GitHub publication and data-release plan](docs/GITHUB_PUBLICATION_PLAN_LUNA_SOL.md)
+
 
 ## Experimental contracts
 
@@ -319,4 +357,4 @@ The longer local archive also contains the [original project experiment synthesi
 
 ## Project status
 
-The Gemini-based EN→VI translation and the reported experiment suite are complete. Luna/Sol translation is outside the validated experimental scope. The next research step is not to publish stronger claims from E7; it is to reproduce the dynamic-schema recipe more faithfully, calibrate N23 thresholds per label and input contract, and compare throughput/latency on the same hardware and batch policy.
+The Gemini-based EN→VI translation and the reported experiment suite are complete. The Luna/Sol translation pipeline is also complete and structurally train-ready, but its downstream comparison remains unrun. The immediate translation-study step is the frozen Gemini-versus-Luna/Sol protocol on matched Nemotron splits and external SEA evaluation. Native Vietnamese data generation remains a separate parked track. The architecture track still needs a closer dynamic-schema reproduction, per-label N23 calibration, and hardware-matched throughput/latency measurement.
