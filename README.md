@@ -52,7 +52,7 @@ This repository therefore describes the experiment as a controlled base-model/co
 
 The source is an English Nemotron safety corpus containing prompt/response safety examples, binary safety labels, and a 23-category safety taxonomy used by the multi-label evaluations. The final Vietnamese deliverable contains one translated record for every source UID.
 
-The project result reported here is the **Gemini translation pipeline plus the completed encoder/decoder experiments**. Luna/Sol translations were completed later, but they were not used for the reported experiments and should not be presented as an experimentally validated contribution of this project.
+The completed encoder/decoder experiments reported below used the **Gemini translation corpus**. A second, UID-matched Luna/Sol translation reached 45,416/45,416 records on 2026-08-09 and is train-ready, but it has not yet been used for the reported experiments. Until the matched training protocol is executed, the repository presents Luna/Sol as a completed pipeline artifact rather than a demonstrated model-quality improvement.
 
 ### UID-preserving pipeline
 
@@ -86,6 +86,15 @@ The validated Gemini corpus report records:
 - The report explicitly does **not** claim BLEU, COMET, or human-equivalence quality; it reports structural and safety-preservation readiness.
 
 See the full [translation quality report](reports/final_quality/TRANSLATION_QUALITY_REPORT.md).
+
+### Luna/Sol translation study
+
+The later pipeline used Luna for 45,060 selected records and Sol Web for 356 hard or infrastructure-limited records. The final corpus has full UID coverage, zero structural issues, and exact materialization parity with the Gemini condition. Downstream comparison is pending.
+
+- [Luna/Sol methods and data-quality handoff](docs/LUNA_SOL_TRANSLATION_RESEARCH_HANDOFF.md)
+- [Matched training and evaluation protocol](docs/LUNA_SOL_TRAINING_EVALUATION_PROTOCOL.md)
+- [GitHub publication and data-release plan](docs/GITHUB_PUBLICATION_PLAN_LUNA_SOL.md)
+
 
 ## Experimental contracts
 
@@ -319,4 +328,4 @@ The longer local archive also contains the [original project experiment synthesi
 
 ## Project status
 
-The Gemini-based EN→VI translation and the reported experiment suite are complete. Luna/Sol translation is outside the validated experimental scope. The next research step is not to publish stronger claims from E7; it is to reproduce the dynamic-schema recipe more faithfully, calibrate N23 thresholds per label and input contract, and compare throughput/latency on the same hardware and batch policy.
+The Gemini-based EN→VI translation and the reported experiment suite are complete. The Luna/Sol translation pipeline is also complete and structurally train-ready, but its downstream comparison remains unrun. The immediate translation-study step is the frozen Gemini-versus-Luna/Sol protocol on matched Nemotron splits and external SEA evaluation. Native Vietnamese data generation remains a separate parked track. The architecture track still needs a closer dynamic-schema reproduction, per-label N23 calibration, and hardware-matched throughput/latency measurement.

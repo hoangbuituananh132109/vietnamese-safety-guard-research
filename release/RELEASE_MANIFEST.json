@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "prepared_at": "2026-08-09",
+  "github_release": {
+    "scope": "code, configs, prompts, validators, tests, sanitized reports, release cards",
+    "license": "Apache-2.0",
+    "excludes": [
+      "raw safety records",
+      "translated JSONL",
+      "API credentials and session data",
+      "base model weights",
+      "prediction dumps and runtime logs"
+    ]
+  },
+  "dataset_candidate": {
+    "id": "nemotron_safety_guard_vi_luna_sol",
+    "source": "nvidia/Nemotron-Safety-Guard-Dataset-v3",
+    "license": "CC-BY-4.0",
+    "records": 45416,
+    "provider_counts": {
+      "luna": 45060,
+      "sol_web": 356
+    },
+    "training_status": "not_trained_or_evaluated_downstream",
+    "card": "release/datasets/nemotron_safety_guard_vi_luna_sol/README.md"
+  },
+  "adapter_candidates": [
+    {
+      "id": "q2_qwen3guard_vi_en_lora",
+      "base_model": "Qwen/Qwen3Guard-Gen-4B",
+      "contract": "final P/PR-only; R excluded",
+      "adapter_bytes": 11815504,
+      "adapter_sha256": "86e80a47c77c70480c4caa840c5e08d69695f99d287fe29a739caf2c28b5b972",
+      "card": "release/model_cards/q2_qwen3guard_vi_en_lora.md"
+    },
+    {
+      "id": "d3_nemotron_vi_lora",
+      "base_model": "nvidia/Llama-3.1-Nemotron-Safety-Guard-8B-v3",
+      "base_revision": "8fdc246ba3d56db9c469d534233b9f582d3afafa",
+      "contract": "final P/PR-only; R excluded",
+      "adapter_bytes": 13648432,
+      "adapter_sha256": "38a328fffe43b7b455038f9a9a2f75288bf4b145203bc9e4d8f00fde226f1bac",
+      "card": "release/model_cards/d3_nemotron_vi_lora.md"
+    }
+  ]
+}

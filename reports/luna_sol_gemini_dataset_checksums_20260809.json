@@ -1,0 +1,53 @@
+{
+    "generated_date":  "2026-08-09",
+    "record_counts":  {
+                          "train":  40007,
+                          "valid":  2445,
+                          "test":  2964,
+                          "total":  45416
+                      },
+    "files":  [
+                  {
+                      "condition":  "luna_sol",
+                      "split":  "train",
+                      "path":  "data/final_luna_sol_pure_v1/nemotron_train_en_vi_v10_final.jsonl",
+                      "bytes":  138694111,
+                      "sha256":  "3c5d1ce29abdc2a5cc6834a3d099867d071009ceef5ed6aef817727b02ceff63"
+                  },
+                  {
+                      "condition":  "luna_sol",
+                      "split":  "valid",
+                      "path":  "data/final_luna_sol_pure_v1/nemotron_valid_en_vi_v10_final.jsonl",
+                      "bytes":  9289294,
+                      "sha256":  "ec0a960b6dc8d6a30cfb8e560523089f8b6db7742fdfee23f105ae212876d19d"
+                  },
+                  {
+                      "condition":  "luna_sol",
+                      "split":  "test",
+                      "path":  "data/final_luna_sol_pure_v1/nemotron_test_en_vi_v10_final.jsonl",
+                      "bytes":  10808068,
+                      "sha256":  "b0794062d74ff6ecc5d628276e8d9e489c19d9fb6c297671c6a9f704c499b53b"
+                  },
+                  {
+                      "condition":  "gemini",
+                      "split":  "train",
+                      "path":  "data/final_gemini_paired_v1/nemotron_train_en_vi_v10_final.jsonl",
+                      "bytes":  140448086,
+                      "sha256":  "1e8f232d1dc3b6fe7527546d5e9791992adffa879560e730c60209f007775a09"
+                  },
+                  {
+                      "condition":  "gemini",
+                      "split":  "valid",
+                      "path":  "data/final_gemini_paired_v1/nemotron_valid_en_vi_v10_final.jsonl",
+                      "bytes":  9391070,
+                      "sha256":  "be9848e6242a59c79e4ba37f61434e8732954dff698f6979318a87ade9754332"
+                  },
+                  {
+                      "condition":  "gemini",
+                      "split":  "test",
+                      "path":  "data/final_gemini_paired_v1/nemotron_test_en_vi_v10_final.jsonl",
+                      "bytes":  10936385,
+                      "sha256":  "0ab51574d967708d992fd3428a91ac63c710522ee887b6a751b6439e98d5edbf"
+                  }
+              ]
+}

@@ -38,3 +38,10 @@ reports/full_run/*.log
 *.p12
 *.secret
 auth.json
+
+# Local translation orchestration and generated browser payloads
+.agents/
+configs/key_assignments.json
+web/
+*.log
+GPU_RUN_STATE.md

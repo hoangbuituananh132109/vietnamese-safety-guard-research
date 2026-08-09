@@ -1,0 +1,15 @@
+Vietnamese Safety Guard Research
+Copyright 2026 Hoang Bui Tuan Anh
+
+The top-level Apache-2.0 license covers original software, configurations, and
+documentation in this repository unless a file says otherwise. It does not
+relicense third-party datasets, base models, tokenizer files, papers, or other
+upstream material.
+
+The Vietnamese Nemotron translation is an adapted work of NVIDIA's
+Nemotron-Safety-Guard-Dataset-v3 and must retain the upstream CC BY 4.0
+attribution, license link, and change notice. See docs/DATA_MODEL_RELEASE_AND_LICENSE.md.
+
+Project LoRA adapters remain subject to the applicable base-model terms. In
+particular, a Nemotron/Llama-derived adapter is not relicensed solely by this
+repository's Apache-2.0 license.
