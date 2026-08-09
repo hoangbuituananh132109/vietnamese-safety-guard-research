@@ -1,0 +1,4 @@
+split,total_examples,n23_supervised_examples,gold_positive_labels,duplicate_labels_removed_by_multihot,evaluation_micro_f1,evaluation_macro_f1,evaluation_exact_match
+train,101274,75574,91576,4,,,
+valid,6390,4732,6046,0,0.3204334365325077,0.14516009681233952,0.42138630600169064
+test,8056,5768,6966,6,0.3441870629370629,0.1575709951307541,0.44885575589459087

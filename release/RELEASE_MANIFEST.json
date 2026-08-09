@@ -42,5 +42,28 @@
       "adapter_sha256": "38a328fffe43b7b455038f9a9a2f75288bf4b145203bc9e4d8f00fde226f1bac",
       "card": "release/model_cards/d3_nemotron_vi_lora.md"
     }
-  ]
+  ],
+  "hugging_face": {
+    "published_at": "2026-08-09",
+    "dataset": {
+      "repo": "TuanAnhHoangBui/nemotron-safety-guard-vi-luna-sol",
+      "gated": "auto",
+      "records": 45416,
+      "train_sha256": "3773c49a0eda054859f7edbe8fa1e461f27c2f2037258b41a2da5797b9bae907",
+      "validation_sha256": "48ac2c9403912172f2333fee6d17e76775a44e55f1e602e090af0c011293f2bb",
+      "test_sha256": "63e9aabcd0ce805a42e1bdaa67e5ded431bcb9e405a9b4b3b59bd66b8db0651b"
+    },
+    "models": [
+      {
+        "repo": "TuanAnhHoangBui/qwen3guard-gen-4b-vi-en-p-pr-lora",
+        "run": "Q2",
+        "adapter_only": true
+      },
+      {
+        "repo": "TuanAnhHoangBui/nemotron-safety-guard-8b-vi-p-pr-lora",
+        "run": "D3",
+        "adapter_only": true
+      }
+    ]
+  }
 }

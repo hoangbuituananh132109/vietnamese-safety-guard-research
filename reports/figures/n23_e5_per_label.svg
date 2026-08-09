@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="902" viewBox="0 0 1280 902">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:25px;font-weight:700}.sub{font-size:14px;fill:#667085}.label{font-size:14px}.small{font-size:12px;fill:#667085}.value{font-size:12px;font-weight:600}.axis{stroke:#aeb7c7;stroke-width:1}.grid{stroke:#e5e8ef;stroke-width:1}</style>
+<text class="title" x="48" y="40">E5NR N23 F1 by category</text>
+<text class="sub" x="48" y="65">Nemotron test, 5,768 supervised examples; labels sorted by F1, support shown at right</text>
+<line class="grid" x1="330.0" y1="90" x2="330.0" y2="872"/>
+<text class="small" text-anchor="middle" x="330.0" y="890">0.0</text>
+<line class="grid" x1="536.2" y1="90" x2="536.2" y2="872"/>
+<text class="small" text-anchor="middle" x="536.2" y="890">0.2</text>
+<line class="grid" x1="742.5" y1="90" x2="742.5" y2="872"/>
+<text class="small" text-anchor="middle" x="742.5" y="890">0.4</text>
+<line class="grid" x1="948.8" y1="90" x2="948.8" y2="872"/>
+<text class="small" text-anchor="middle" x="948.8" y="890">0.6</text>
+<line class="grid" x1="1155.0" y1="90" x2="1155.0" y2="872"/>
+<text class="small" text-anchor="middle" x="1155.0" y="890">0.8</text>
+<text class="small" text-anchor="end" x="318" y="110">Criminal Planning/Confessions</text>
+<rect x="330" y="96" width="665.8" height="17" rx="3" fill="#3569c8"/>
+<text class="value" x="1002.8" y="109">0.646</text>
+<text class="small" x="1177" y="109">n=1420</text>
+<text class="small" text-anchor="end" x="318" y="144">Controlled/Regulated Substances</text>
+<rect x="330" y="130" width="555.4" height="17" rx="3" fill="#3569c8"/>
+<text class="value" x="892.4" y="143">0.539</text>
+<text class="small" x="1177" y="143">n=514</text>
+<text class="small" text-anchor="end" x="318" y="178">Guns and Illegal Weapons</text>
+<rect x="330" y="164" width="520.0" height="17" rx="3" fill="#3569c8"/>
+<text class="value" x="857.0" y="177">0.504</text>
+<text class="small" x="1177" y="177">n=240</text>
+<text class="small" text-anchor="end" x="318" y="212">PII/Privacy</text>
+<rect x="330" y="198" width="463.6" height="17" rx="3" fill="#3569c8"/>
+<text class="value" x="800.6" y="211">0.450</text>
+<text class="small" x="1177" y="211">n=376</text>
+<text class="small" text-anchor="end" x="318" y="246">Sexual</text>
+<rect x="330" y="232" width="383.2" height="17" rx="3" fill="#3569c8"/>
+<text class="value" x="720.2" y="245">0.372</text>
+<text class="small" x="1177" y="245">n=224</text>
+<text class="small" text-anchor="end" x="318" y="280">Hate/Identity Hate</text>
+<rect x="330" y="266" width="300.6" height="17" rx="3" fill="#3569c8"/>
+<text class="value" x="637.6" y="279">0.292</text>
+<text class="small" x="1177" y="279">n=450</text>
+<text class="small" text-anchor="end" x="318" y="314">Violence</text>
+<rect x="330" y="300" width="286.9" height="17" rx="3" fill="#3569c8"/>
+<text class="value" x="623.9" y="313">0.278</text>
+<text class="small" x="1177" y="313">n=504</text>
+<text class="small" text-anchor="end" x="318" y="348">Illegal Activity</text>
+<rect x="330" y="334" width="271.4" height="17" rx="3" fill="#3569c8"/>
+<text class="value" x="608.4" y="347">0.263</text>
+<text class="small" x="1177" y="347">n=372</text>
+<text class="small" text-anchor="end" x="318" y="382">Immoral/Unethical</text>
+<rect x="330" y="368" width="86.1" height="17" rx="3" fill="#c6922e"/>
+<text class="value" x="423.1" y="381">0.084</text>
+<text class="small" x="1177" y="381">n=376</text>
+<text class="small" text-anchor="end" x="318" y="416">Profanity</text>
+<rect x="330" y="402" width="62.7" height="17" rx="3" fill="#c6922e"/>
+<text class="value" x="399.7" y="415">0.061</text>
+<text class="small" x="1177" y="415">n=250</text>
+<text class="small" text-anchor="end" x="318" y="450">Unauthorized Advice</text>
+<rect x="330" y="436" width="40.2" height="17" rx="3" fill="#c6922e"/>
+<text class="value" x="377.2" y="449">0.039</text>
+<text class="small" x="1177" y="449">n=198</text>
+<text class="small" text-anchor="end" x="318" y="484">Suicide and Self Harm</text>
+<rect x="330" y="470" width="31.4" height="17" rx="3" fill="#c6922e"/>
+<text class="value" x="368.4" y="483">0.030</text>
+<text class="small" x="1177" y="483">n=258</text>
+<text class="small" text-anchor="end" x="318" y="518">Sexual (minor)</text>
+<rect x="330" y="504" width="28.1" height="17" rx="3" fill="#c6922e"/>
+<text class="value" x="365.1" y="517">0.027</text>
+<text class="small" x="1177" y="517">n=144</text>
+<text class="small" text-anchor="end" x="318" y="552">Harassment</text>
+<rect x="330" y="538" width="20.5" height="17" rx="3" fill="#c6922e"/>
+<text class="value" x="357.5" y="551">0.020</text>
+<text class="small" x="1177" y="551">n=386</text>
+<text class="small" text-anchor="end" x="318" y="586">Manipulation</text>
+<rect x="330" y="572" width="18.1" height="17" rx="3" fill="#c6922e"/>
+<text class="value" x="355.1" y="585">0.018</text>
+<text class="small" x="1177" y="585">n=220</text>
+<text class="small" text-anchor="end" x="318" y="620">Needs Caution</text>
+<rect x="330" y="606" width="3.3" height="17" rx="3" fill="#c6922e"/>
+<text class="value" x="340.3" y="619">0.003</text>
+<text class="small" x="1177" y="619">n=614</text>
+<text class="small" text-anchor="end" x="318" y="654">Political/Misinformation/Conspiracy</text>
+<rect x="330" y="640" width="0.0" height="17" rx="3" fill="#c9ced8"/>
+<text class="value" x="337.0" y="653">0.000</text>
+<text class="small" x="1177" y="653">n=138</text>
+<text class="small" text-anchor="end" x="318" y="688">Threat</text>
+<rect x="330" y="674" width="0.0" height="17" rx="3" fill="#c9ced8"/>
+<text class="value" x="337.0" y="687">0.000</text>
+<text class="small" x="1177" y="687">n=110</text>
+<text class="small" text-anchor="end" x="318" y="722">Fraud/Deception</text>
+<rect x="330" y="708" width="0.0" height="17" rx="3" fill="#c9ced8"/>
+<text class="value" x="337.0" y="721">0.000</text>
+<text class="small" x="1177" y="721">n=98</text>
+<text class="small" text-anchor="end" x="318" y="756">Other</text>
+<rect x="330" y="742" width="0.0" height="17" rx="3" fill="#c9ced8"/>
+<text class="value" x="337.0" y="755">0.000</text>
+<text class="small" x="1177" y="755">n=26</text>
+<text class="small" text-anchor="end" x="318" y="790">Malware</text>
+<rect x="330" y="776" width="0.0" height="17" rx="3" fill="#c9ced8"/>
+<text class="value" x="337.0" y="789">0.000</text>
+<text class="small" x="1177" y="789">n=24</text>
+<text class="small" text-anchor="end" x="318" y="824">Copyright/Trademark/Plagiarism</text>
+<rect x="330" y="810" width="0.0" height="17" rx="3" fill="#c9ced8"/>
+<text class="value" x="337.0" y="823">0.000</text>
+<text class="small" x="1177" y="823">n=12</text>
+<text class="small" text-anchor="end" x="318" y="858">High Risk Gov Decision Making</text>
+<rect x="330" y="844" width="0.0" height="17" rx="3" fill="#c9ced8"/>
+<text class="value" x="337.0" y="857">0.000</text>
+<text class="small" x="1177" y="857">n=12</text>
+</svg>

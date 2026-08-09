@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="453" viewBox="0 0 1180 453">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:25px;font-weight:700}.sub{font-size:14px;fill:#667085}.label{font-size:14px}.small{font-size:12px;fill:#667085}.value{font-size:12px;font-weight:600}.axis{stroke:#aeb7c7;stroke-width:1}.grid{stroke:#e5e8ef;stroke-width:1}</style>
+<text class="title" x="48" y="40">Decoder performance on the exact common P/PR set</text>
+<text class="sub" x="48" y="65">11,736 examples; D2 is a mixed-view historical training comparator</text>
+<text class="small" text-anchor="middle" x="237.5" y="100">Accuracy</text>
+<text class="small" text-anchor="middle" x="382.5" y="100">EN accuracy</text>
+<text class="small" text-anchor="middle" x="527.5" y="100">VI accuracy</text>
+<text class="small" text-anchor="middle" x="672.5" y="100">Safe recall</text>
+<text class="small" text-anchor="middle" x="817.5" y="100">Unsafe recall</text>
+<text class="small" text-anchor="middle" x="962.5" y="100">EN–VI agree</text>
+<text class="label" text-anchor="end" x="150" y="153">Q1</text>
+<rect x="168" y="121" width="139" height="52" rx="5" fill="#5984d2" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="153" fill="#ffffff" style="fill:#ffffff">85.15%</text>
+<rect x="313" y="121" width="139" height="52" rx="5" fill="#5682d1" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="153" fill="#ffffff" style="fill:#ffffff">86.06%</text>
+<rect x="458" y="121" width="139" height="52" rx="5" fill="#5d87d3" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="153" fill="#ffffff" style="fill:#ffffff">84.24%</text>
+<rect x="603" y="121" width="139" height="52" rx="5" fill="#7c9edc" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="672.5" y="153" fill="#ffffff" style="fill:#ffffff">75.85%</text>
+<rect x="748" y="121" width="139" height="52" rx="5" fill="#396cc9" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="817.5" y="153" fill="#ffffff" style="fill:#ffffff">93.88%</text>
+<rect x="893" y="121" width="139" height="52" rx="5" fill="#386bc9" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="962.5" y="153" fill="#ffffff" style="fill:#ffffff">94.29%</text>
+<text class="label" text-anchor="end" x="150" y="211">Q2</text>
+<rect x="168" y="179" width="139" height="52" rx="5" fill="#507dcf" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="211" fill="#ffffff" style="fill:#ffffff">87.83%</text>
+<rect x="313" y="179" width="139" height="52" rx="5" fill="#4d7bcf" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="211" fill="#ffffff" style="fill:#ffffff">88.45%</text>
+<rect x="458" y="179" width="139" height="52" rx="5" fill="#527ed0" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="211" fill="#ffffff" style="fill:#ffffff">87.22%</text>
+<rect x="603" y="179" width="139" height="52" rx="5" fill="#507dcf" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="672.5" y="211" fill="#ffffff" style="fill:#ffffff">87.79%</text>
+<rect x="748" y="179" width="139" height="52" rx="5" fill="#4f7dcf" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="817.5" y="211" fill="#ffffff" style="fill:#ffffff">87.87%</text>
+<rect x="893" y="179" width="139" height="52" rx="5" fill="#396cc9" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="962.5" y="211" fill="#ffffff" style="fill:#ffffff">93.83%</text>
+<text class="label" text-anchor="end" x="150" y="269">D1</text>
+<rect x="168" y="237" width="139" height="52" rx="5" fill="#537fd0" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="269" fill="#ffffff" style="fill:#ffffff">86.95%</text>
+<rect x="313" y="237" width="139" height="52" rx="5" fill="#507dd0" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="269" fill="#ffffff" style="fill:#ffffff">87.61%</text>
+<rect x="458" y="237" width="139" height="52" rx="5" fill="#5581d1" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="269" fill="#ffffff" style="fill:#ffffff">86.30%</text>
+<rect x="603" y="237" width="139" height="52" rx="5" fill="#4675cd" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="672.5" y="269" fill="#ffffff" style="fill:#ffffff">90.52%</text>
+<rect x="748" y="237" width="139" height="52" rx="5" fill="#5f88d4" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="817.5" y="269" fill="#ffffff" style="fill:#ffffff">83.60%</text>
+<rect x="893" y="237" width="139" height="52" rx="5" fill="#3b6dca" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="962.5" y="269" fill="#ffffff" style="fill:#ffffff">93.40%</text>
+<text class="label" text-anchor="end" x="150" y="327">D2</text>
+<rect x="168" y="295" width="139" height="52" rx="5" fill="#5380d0" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="327" fill="#ffffff" style="fill:#ffffff">86.81%</text>
+<rect x="313" y="295" width="139" height="52" rx="5" fill="#517ed0" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="327" fill="#ffffff" style="fill:#ffffff">87.41%</text>
+<rect x="458" y="295" width="139" height="52" rx="5" fill="#5681d1" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="327" fill="#ffffff" style="fill:#ffffff">86.21%</text>
+<rect x="603" y="295" width="139" height="52" rx="5" fill="#4877cd" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="672.5" y="327" fill="#ffffff" style="fill:#ffffff">89.83%</text>
+<rect x="748" y="295" width="139" height="52" rx="5" fill="#5e87d3" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="817.5" y="327" fill="#ffffff" style="fill:#ffffff">83.97%</text>
+<rect x="893" y="295" width="139" height="52" rx="5" fill="#f2f4f7" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="962.5" y="327" fill="#172033" style="fill:#172033">n/a</text>
+<text class="label" text-anchor="end" x="150" y="385">D3</text>
+<rect x="168" y="353" width="139" height="52" rx="5" fill="#5480d1" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="237.5" y="385" fill="#ffffff" style="fill:#ffffff">86.52%</text>
+<rect x="313" y="353" width="139" height="52" rx="5" fill="#537fd0" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="382.5" y="385" fill="#ffffff" style="fill:#ffffff">87.00%</text>
+<rect x="458" y="353" width="139" height="52" rx="5" fill="#5682d1" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="527.5" y="385" fill="#ffffff" style="fill:#ffffff">86.04%</text>
+<rect x="603" y="353" width="139" height="52" rx="5" fill="#4071cb" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="672.5" y="385" fill="#ffffff" style="fill:#ffffff">92.12%</text>
+<rect x="748" y="353" width="139" height="52" rx="5" fill="#688fd6" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="817.5" y="385" fill="#ffffff" style="fill:#ffffff">81.26%</text>
+<rect x="893" y="353" width="139" height="52" rx="5" fill="#396cc9" stroke="#ffffff"/>
+<text class="value" text-anchor="middle" x="962.5" y="385" fill="#ffffff" style="fill:#ffffff">93.83%</text>
+</svg>

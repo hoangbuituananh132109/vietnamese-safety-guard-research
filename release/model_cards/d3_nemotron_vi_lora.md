@@ -1,6 +1,9 @@
 ---
 base_model: nvidia/Llama-3.1-Nemotron-Safety-Guard-8B-v3
 library_name: peft
+license: other
+license_name: nvidia-open-model-license-with-llama3.1-terms
+license_link: https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/
 tags: [lora, safety, vietnamese, content-moderation]
 ---
 
@@ -37,7 +40,6 @@ Use the PEFT loading pattern from the base model's supported Transformers
 version. Users must obtain the NVIDIA base model separately and accept all
 applicable upstream terms.
 
-Before upload, copy only `adapter_model.safetensors` and
-`adapter_config.json`, replace the private `/workspace/...` base path with the
-public base ID, retain upstream license notices, and add SHA-256 checksums. Do
-not upload copied base weights or unchanged tokenizer files.
+This repository contains only the PEFT adapter and public adapter config; base weights and tokenizer files are not redistributed. Users must accept the upstream NVIDIA and Llama terms before loading the base model.
+
+Adapter SHA-256: 38a328fffe43b7b455038f9a9a2f75288bf4b145203bc9e4d8f00fde226f1bac.

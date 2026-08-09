@@ -39,7 +39,6 @@ base = AutoModelForCausalLM.from_pretrained(base_id, torch_dtype="auto")
 model = PeftModel.from_pretrained(base, adapter_id)
 ```
 
-Before upload, copy only `adapter_model.safetensors` and
-`adapter_config.json`, replace the private `/workspace/...` base path in the
-config with the public base ID, and add SHA-256 checksums. Do not upload copied
-base weights or unchanged tokenizer files.
+This repository contains only the PEFT adapter and public adapter config; base weights and tokenizer files are not redistributed.
+
+Adapter SHA-256: 86e80a47c77c70480c4caa840c5e08d69695f99d287fe29a739caf2c28b5b972.

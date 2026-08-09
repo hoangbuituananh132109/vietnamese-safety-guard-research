@@ -21,6 +21,35 @@ The public repository contains the implementation, experiment contracts, validat
 | Decoder result | Qwen3Guard-Gen-4B LoRA was strongest on the common no-response (no-R) comparison used here, while NVIDIA Nemotron Guard remained a useful large-decoder reference. |
 | Main conclusion | Context capacity and multilingual exposure mattered more reliably than the first dynamic-schema implementation. Binary accuracy alone was not enough: unsafe recall, calibration, N23 category coverage, and P/PR behavior changed the deployment interpretation. |
 
+## Clean P/PR results release
+
+The current primary research contract excludes response-only (R) examples from training and evaluation. The detailed report separates E1/E2 native-capacity populations from the full 8K E3–E7 population, and treats the mixed P/R/PR D2 pilot as historical evidence only.
+
+Key clean findings:
+
+- E5NR mmBERT full EN+VI is the strongest fixed-head encoder: 78.26% Nemotron and 73.34% SEA accuracy.
+- Q2 Qwen3Guard LoRA is the strongest binary decoder on the exact 11,736-example common set: 87.83% accuracy and 87.82% macro-F1.
+- Qwen base is already strong, but its native Controversial output makes binary performance policy-dependent.
+- D3 Nemotron LoRA improves N23 macro-F1 over D1, but does not improve overall binary accuracy.
+- E5's N23 tail labels remain weak at a global 0.5 threshold; per-label validation calibration is the next required experiment.
+- The completed Luna/Sol translation is not included in these trained results. A matched Gemini-versus-Luna/Sol retraining study is the next phase.
+
+[Read the detailed clean P/PR report](reports/CLEAN_P_PR_RESEARCH_REPORT_20260809.md) or inspect the [machine-readable metrics](reports/clean_experiments/metrics_summary.json).
+
+Published Hugging Face artifacts:
+
+- [Gated Luna/Sol Vietnamese dataset](https://huggingface.co/datasets/TuanAnhHoangBui/nemotron-safety-guard-vi-luna-sol)
+- [Q2 Qwen3Guard EN–VI P/PR LoRA adapter](https://huggingface.co/TuanAnhHoangBui/qwen3guard-gen-4b-vi-en-p-pr-lora)
+- [D3 Nemotron Vietnamese P/PR LoRA adapter](https://huggingface.co/TuanAnhHoangBui/nemotron-safety-guard-8b-vi-p-pr-lora)
+### Main figures
+
+![Full 8K encoder comparison](reports/figures/encoder_full_suite.svg)
+
+![Clean decoder comparison](reports/figures/decoder_clean_comparison.svg)
+
+![Qwen before and after binary LoRA](reports/figures/qwen_before_after.svg)
+
+![E5 N23 category F1](reports/figures/n23_e5_per_label.svg)
 ## Why GLiGuard led to this study
 
 The GLiGuard paper presents a schema-conditioned bidirectional encoder for safety classification. Instead of generating a moderation answer token by token, the model places task and label descriptions into the input, uses the hidden state at each label anchor, and maps those representations to classification scores. The paper reports a much smaller model and substantially higher throughput/lower latency than the decoder guards in its benchmark. See the [GLiGuard paper](https://arxiv.org/abs/2605.07982), the [official implementation](https://github.com/fastino-ai/GLiGuard), and the [released checkpoint](https://huggingface.co/fastino/gliguard-LLMGuardrails-300M).
